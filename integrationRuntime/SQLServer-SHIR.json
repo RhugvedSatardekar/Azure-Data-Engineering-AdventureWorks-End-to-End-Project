@@ -1,0 +1,7 @@
+{
+	"name": "SQLServer-SHIR",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "used to connect SQL Server On-Premise Database"
+	}
+}
