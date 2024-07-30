@@ -39,3 +39,23 @@
 
 #### Inside Resource group all the services are stored
 ![image](https://github.com/user-attachments/assets/22c3dbe8-eea6-4204-8c15-dd1b0fc8bf7d)
+
+## Create the Data Source
+### Download the Lightweight version of AdvantureWorks Operational Database using below link:
+https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak
+
+### Restore the .bak file to the SQL Server Database
+1. Create Database into the server using 'create database AdvantureWorksDB2020L' this query
+2. Save the file in backup folder of the SQL server for database restore. Sample path is 
+- C:\Program Files\Microsoft SQL Server\MSSQL16.RHUGVEDSQLSERVER\MSSQL\Backup
+![image](https://github.com/user-attachments/assets/0234a7a8-dbf9-4a44-b945-6cf7be6c11ab)
+
+![image](https://github.com/user-attachments/assets/60b5b108-f7e9-45e4-860b-64c4b037cfda)
+
+- Do not forget to choose the below options before restore
+![image](https://github.com/user-attachments/assets/3eb841cd-e073-4f58-b23a-1b0eff523d65)
+
+![image](https://github.com/user-attachments/assets/1b792d0b-219f-447f-b8b7-807f66e7ae47)
+
+
+
