@@ -1,0 +1,9 @@
+{
+	"name": "rhugved-ETL-DataFactory",
+	"location": "germanywestcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f83f59fb-3823-454e-893a-a000e29df5b1",
+		"tenantId": "0723583f-41bc-4914-a4dd-981ec7060dcf"
+	}
+}
