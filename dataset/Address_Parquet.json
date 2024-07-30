@@ -1,0 +1,19 @@
+{
+	"name": "Address_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLGen2_Parquet",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
