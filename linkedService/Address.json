@@ -1,0 +1,27 @@
+{
+	"name": "Address",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "SYSTEMUNHACKABL\\RHUGVEDSQLSERVER",
+			"database": "AdvantureWorksDB2020L",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "Rhugved",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AKV",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "pass"
+			}
+		},
+		"connectVia": {
+			"referenceName": "SQLServer-SHIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
