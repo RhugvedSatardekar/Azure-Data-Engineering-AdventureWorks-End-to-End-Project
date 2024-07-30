@@ -1,10 +1,10 @@
-# Azure-Data-Engineering-Project
-
-### Use Case Architecture
+## Usecase Architecture
 ![image](https://github.com/user-attachments/assets/984a6339-15aa-414e-9ee4-19fa2ffe525d)
 
-### Login to Azure Account using protal.azure.com
-### Create Required Resources in Azure Infrastructure
+## Login to Azure Account using [protal.azure.com](https://portal.azure.com/)
+
+## Create Required Resources in Azure Infrastructure
+
 1. Create a Resource Group for the Services
 ![image](https://github.com/user-attachments/assets/d22f1989-1a10-42ae-8f88-a0a4c15bd377)
 2. Create Azure DataLake Gen2 Account
@@ -28,7 +28,7 @@
 
 ![image](https://github.com/user-attachments/assets/f3e378b0-ad01-4b1d-a1e1-fdaff56bf43e)
 
-7. Create Azure Databricks Resource for data transformation/pre-processing
+6. Create Azure Databricks Resource for data transformation/pre-processing
 - Select Standard Pricing Tier for this project
 ![image](https://github.com/user-attachments/assets/c03811c0-56e7-4272-af25-dabcad28f340)
 ![image](https://github.com/user-attachments/assets/99904dbd-e6ce-41ec-816b-2812dca56c4e)
@@ -57,5 +57,25 @@ https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks
 
 ![image](https://github.com/user-attachments/assets/1b792d0b-219f-447f-b8b7-807f66e7ae47)
 
+## Establish the Connection between On-Premise SQL Server and Azure Cloud Infrastructure
 
+1. Create a new user with password in 'SQL Server > Security > Logins' 
+![image](https://github.com/user-attachments/assets/d7653b9b-88cb-4ada-94b1-779c7d2d8786)
 
+2. Provide the Membership access to the user
+![image](https://github.com/user-attachments/assets/82363961-23cd-46b5-b587-be05693b36d2)
+
+3. Open Key Vault and Create secrets for username and password created for SQL Server in previous step <br/>
+3.1 First of all Add the Role Based Access Control (RBAC) to the key vault
+![image](https://github.com/user-attachments/assets/02071387-7487-4686-846e-6f9e7bcec2cd)
+![image](https://github.com/user-attachments/assets/a7162116-25fd-4834-905b-8221ac8cc2a6)
+![image](https://github.com/user-attachments/assets/daf0893a-0451-427c-8e82-76a6e52fb0df)
+3.2 Then Review and Assign the role
+![image](https://github.com/user-attachments/assets/5b5f6bd4-784f-49bc-9431-f4f7a65acaf5)
+3.3 Add the username and password as seperate secrets
+![image](https://github.com/user-attachments/assets/50f6d76e-96c0-495c-ae9d-f5205909cbc2)
+3.4 Using these secrets all the services can access the On-Premise SQL server Database
+
+## Data Ingestion
+1. Launch the Azure Data Factory Portal from Azure Data Factory Resource <br/>
+2. 
