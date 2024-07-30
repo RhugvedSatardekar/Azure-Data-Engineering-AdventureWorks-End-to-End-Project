@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://rhugved-KeyVault.vault.azure.net/"
+			"baseUrl": "https://rhugved-KeyVault1.vault.azure.net/"
 		}
 	}
 }
