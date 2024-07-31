@@ -1,0 +1,12 @@
+{
+	"name": "SQLDB_AdvantureWorksDB2020L_AllTables",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQLDB_AdvantureWorksDB2020L",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
