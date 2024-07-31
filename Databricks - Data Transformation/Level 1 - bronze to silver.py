@@ -63,3 +63,11 @@ for i in table_name:
     
     output = '/mnt/silver/SalesLT/'+ i + '/'
     df.write.format('delta').mode("overwrite").save(output)
+
+# COMMAND ----------
+
+display(df)
+
+# COMMAND ----------
+
+
