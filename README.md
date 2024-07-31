@@ -260,7 +260,7 @@ Important: Once we mount the containers, we do not require to mount it again to 
 More information can be found here: https://learn.microsoft.com/en-us/azure/databricks/archive/credential-passthrough/adls-passthrough#--access-azure-data-lake-storage-directly-using-credential-passthrough
 
 
-### Level 1 Transformation: Data Transformation in Databricks
+### Level 1 Transformation: bronze to silver
 
 #### Converting Date Columns from DateTime to Date Format
 
@@ -287,7 +287,7 @@ More information can be found here: https://learn.microsoft.com/en-us/azure/data
 ![image](https://github.com/user-attachments/assets/034bcaf3-22ed-4263-86d7-1f8a888915b8)
 
 
-### Instructions for Transformation
+4.2 Instructions for Transformation
 
 1. **Access Parquet Files**: Use the `/mnt/bronze/` mount point to access the parquet files.
 2. **Transformation Logic**: Apply the transformation logic to convert all DateTime columns to Date format using PySpark in Databricks.
@@ -325,4 +325,23 @@ This code snippet demonstrates the process of reading parquet files from the bro
 ### Additional Resources
 
 For more detailed information on Delta Lakehouse Architecture and its benefits, refer to the [Microsoft Documentation](https://learn.microsoft.com/en-us/azure/databricks/delta/).
+
+### Level 2 Transformation: silver to gold 
+
+5. In gold layer/container lies our data warehouse where the data is stored in the form of Fact-Dimention table modeling
+
+5.1 Changed the Column names from format 'FirstName' to 'First_Name' using pyspark and loading it to the gold contaier to store in the form of Fact-Dimention schema
+![image](https://github.com/user-attachments/assets/e9f4454d-e3c2-4412-bedf-5fa36838bc55)
+
+![image](https://github.com/user-attachments/assets/e66d6452-373e-4f21-9846-00ded6d363bc)
+
+![image](https://github.com/user-attachments/assets/2da4287a-f8dd-48b0-867f-91a5662b4d24)
+
+5.2 Lets push the files to the main branch of github repo for source control.
+
+![image](https://github.com/user-attachments/assets/3d28aea0-c70d-4285-83ad-e6b5d9e94211)
+
+5.3 The python code files are available [here on github](https://github.com/RhugvedSatardekar/Azure-Data-Engineering-Project/tree/main/Databricks%20-%20Data%20Transformation)
+
+
 
