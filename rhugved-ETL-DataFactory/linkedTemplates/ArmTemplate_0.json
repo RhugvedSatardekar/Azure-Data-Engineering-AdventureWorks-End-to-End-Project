@@ -475,6 +475,60 @@
 								}
 							]
 						}
+					},
+					{
+						"name": "bronze to silver",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "ForEach Schema Table",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/rugved080@gmail.com/Azure-Data-Engineering-Project/Databricks - Data Transformation/Level 1 - bronze to silver"
+						},
+						"linkedServiceName": {
+							"referenceName": "SalesLT_Data_Transformation",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "silver to gold",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "bronze to silver",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/rugved080@gmail.com/Azure-Data-Engineering-Project/Databricks - Data Transformation/Level 2 - silver to gold"
+						},
+						"linkedServiceName": {
+							"referenceName": "SalesLT_Data_Transformation",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -484,6 +538,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SQLDBTable')]",
+				"[concat(variables('factoryId'), '/linkedServices/SalesLT_Data_Transformation')]",
 				"[concat(variables('factoryId'), '/datasets/SQLDB_AdvantureWorksDB2020L_AllTables')]",
 				"[concat(variables('factoryId'), '/datasets/BronzeContainer')]"
 			]
