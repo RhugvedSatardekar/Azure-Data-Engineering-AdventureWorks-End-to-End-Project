@@ -259,6 +259,70 @@ Important: Once we mount the containers, we do not require to mount it again to 
 
 More information can be found here: https://learn.microsoft.com/en-us/azure/databricks/archive/credential-passthrough/adls-passthrough#--access-azure-data-lake-storage-directly-using-credential-passthrough
 
-4. Now we will use /mnt/bronze/ mount point to access all the parquet files storing database table records and load it to /mnt/silver/ mount point for data transformation
-### Level 1 Transformation
-#### Converting all the Date columns from DateTime to Date format
+
+### Level 1 Transformation: Data Transformation in Databricks
+
+#### Converting Date Columns from DateTime to Date Format
+
+4. Now we will use the `/mnt/bronze/` mount point to access all the parquet files storing database table records and load them to the `/mnt/silver/` mount point for data transformation.
+
+4.1. After transformation, we store the data in 'delta' format in the silver container. The delta format is native to Databricks and is hosted by the 'Delta Lakehouse Architecture,' which combines the advantages of data lakes and data warehouses. Some key benefits include versioning of tables and handling schema changes. Delta format is recommended by Databricks. More info can be found [here](https://learn.microsoft.com/en-us/azure/databricks/delta/).
+
+- The PySpark code in Databricks for data transformation is available [here on GitHub](https://github.com/RhugvedSatardekar/Azure-Data-Engineering-Project/tree/main/Databricks%20-%20Data%20Transformation).
+
+- After executing the code files, the datetime columns from all the tables has been transformed to date
+![image](https://github.com/user-attachments/assets/a3fe588f-1aa2-44d4-b844-cef9487d4613)
+
+- We can source control our code files for collaboration to github
+  ![image](https://github.com/user-attachments/assets/77478932-c1e4-4410-85b0-0538367ddc2c)
+
+- The directory structure for all the delta files is shown below:
+
+![Directory Structure](https://github.com/user-attachments/assets/5c09390a-201f-4d1a-a6b4-f8a43539a0e1)
+
+![image](https://github.com/user-attachments/assets/7be1725e-65cf-452d-bd03-57fa0b3be366)
+
+![image](https://github.com/user-attachments/assets/981342e8-234e-44d3-ae8f-d45f13008eff)
+
+![image](https://github.com/user-attachments/assets/034bcaf3-22ed-4263-86d7-1f8a888915b8)
+
+
+### Instructions for Transformation
+
+1. **Access Parquet Files**: Use the `/mnt/bronze/` mount point to access the parquet files.
+2. **Transformation Logic**: Apply the transformation logic to convert all DateTime columns to Date format using PySpark in Databricks.
+3. **Store Transformed Data**: Save the transformed data in 'delta' format in the silver container using the `/mnt/silver/` mount point.
+4. **Delta Lakehouse Architecture**: Leverage the Delta Lakehouse Architecture for its benefits, including version control and schema handling.
+
+### PySpark Code Example
+
+Here's an example of PySpark code for the transformation:
+
+```python
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, to_date
+
+# Initialize Spark Session
+spark = SparkSession.builder \
+    .appName("Data Transformation") \
+    .getOrCreate()
+
+# Load parquet files from bronze container
+df_bronze = spark.read.parquet("/mnt/bronze/")
+
+# Transform DateTime columns to Date format
+df_silver = df_bronze.withColumn("date_column", to_date(col("datetime_column")))
+
+# Write the transformed data to silver container in delta format
+df_silver.write.format("delta").mode("overwrite").save("/mnt/silver/")
+
+# Stop Spark Session
+spark.stop()
+```
+
+This code snippet demonstrates the process of reading parquet files from the bronze container, transforming DateTime columns to Date format, and saving the data in delta format in the silver container.
+
+### Additional Resources
+
+For more detailed information on Delta Lakehouse Architecture and its benefits, refer to the [Microsoft Documentation](https://learn.microsoft.com/en-us/azure/databricks/delta/).
+
