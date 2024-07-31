@@ -155,5 +155,12 @@ and for cloud-based Azure services we can use its own 'AutoResolvedIntegrationRu
 4.15 Save the Pipeline, Validate,Publish, and Trigger to execute the ETL Pipeline
 ![image](https://github.com/user-attachments/assets/db90d248-cda7-4f53-940d-b47e38ce2273)
 
-
 ![image](https://github.com/user-attachments/assets/c507bea6-74a0-4168-b0ec-8c885a1c0291)
+
+![image](https://github.com/user-attachments/assets/8ef7d6c8-f92b-496f-a447-85965951c93e)
+
+- Note: Due to the Self-Hosted Integration Runtime, it is possible to hit with error while debugging stating,'JRE not found', in this case please install JRE from
+https://www.java.com/en/download/manual.jsp this link and set destination folder as 'C:\Program Files\Java'. After installation set up the System Environment Variable Path for Java
+'JAVA_HOME' with the 'C:\Program Files\Java\jre1.8.0_421\bin' and rerun the pipline, it will succeed. More information can be found here https://learn.microsoft.com/en-gb/azure/data-factory/connector-troubleshoot-guide#error-code-jrenotfound
+
+
