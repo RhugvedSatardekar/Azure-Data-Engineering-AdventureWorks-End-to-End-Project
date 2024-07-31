@@ -401,7 +401,7 @@
 										"source": {
 											"type": "SqlServerSource",
 											"sqlReaderQuery": {
-												"value": "@{concat('select * from',item().SchemaName,'.',item().TableName)}",
+												"value": "@{concat('select * from ',item().SchemaName,'.',item().TableName)}",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
