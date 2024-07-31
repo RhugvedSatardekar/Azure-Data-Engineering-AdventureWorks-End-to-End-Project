@@ -47,6 +47,10 @@
 			"type": "string",
 			"defaultValue": "Rhugved"
 		},
+		"SalesLT_Data_Transformation_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0731-111018-15gqh1y1"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -103,6 +107,9 @@
 					},
 					"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
 						"value": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName')]"
+					},
+					"SalesLT_Data_Transformation_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('SalesLT_Data_Transformation_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},

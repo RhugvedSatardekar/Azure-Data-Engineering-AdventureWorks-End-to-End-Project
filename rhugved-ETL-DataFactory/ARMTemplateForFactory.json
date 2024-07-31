@@ -46,6 +46,10 @@
 		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "Rhugved"
+		},
+		"SalesLT_Data_Transformation_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0731-111018-15gqh1y1"
 		}
 	},
 	"variables": {
@@ -624,6 +628,31 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/SQLServer-SHIR')]",
+				"[concat(variables('factoryId'), '/linkedServices/AKV')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SalesLT_Data_Transformation')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connection to the Azure Databricks cluster(compute)",
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-3605031356218282.2.azuredatabricks.net",
+					"accessToken": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AKV",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "databricks-data-transformation"
+					},
+					"existingClusterId": "[parameters('SalesLT_Data_Transformation_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AKV')]"
 			]
 		},

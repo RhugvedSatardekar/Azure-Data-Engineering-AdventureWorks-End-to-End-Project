@@ -34,6 +34,9 @@
 		},
 		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
 			"value": "Rhugved"
+		},
+		"SalesLT_Data_Transformation_properties_typeProperties_existingClusterId": {
+			"value": "0731-111018-15gqh1y1"
 		}
 	}
 }
