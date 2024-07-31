@@ -274,7 +274,7 @@ More information can be found here: https://learn.microsoft.com/en-us/azure/data
 ![image](https://github.com/user-attachments/assets/a3fe588f-1aa2-44d4-b844-cef9487d4613)
 
 - We can source control our code files for collaboration to github
-  ![image](https://github.com/user-attachments/assets/77478932-c1e4-4410-85b0-0538367ddc2c)
+![image](https://github.com/user-attachments/assets/77478932-c1e4-4410-85b0-0538367ddc2c)
 
 - The directory structure for all the delta files is shown below:
 
