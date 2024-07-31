@@ -1,6 +1,7 @@
-## Usecase Architecture
+# Usecase Architecture
 ![image](https://github.com/user-attachments/assets/984a6339-15aa-414e-9ee4-19fa2ffe525d)
 
+# Part 1: Environment Setup
 ## Login to Azure Account using [protal.azure.com](https://portal.azure.com/)
 
 ## Create Required Resources in Azure Infrastructure
@@ -76,7 +77,7 @@ https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks
 ![image](https://github.com/user-attachments/assets/50f6d76e-96c0-495c-ae9d-f5205909cbc2)
 3.4 Using these secrets all the services can access the On-Premise SQL server Database
 
-## Data Ingestion using Azure Data Factory(ADF)
+# Part 2: **Data Ingestion using Azure Data Factory (ADF)**
 1. Launch the Azure Data Factory Portal from Azure Data Factory Resource 
 2. Configure Git Version Control System for project integration 
 ![image](https://github.com/user-attachments/assets/d21a3782-2a41-4b58-a81b-24b4131d337d)
@@ -223,3 +224,8 @@ https://www.java.com/en/download/manual.jsp this link and set destination folder
 
 
 ![image](https://github.com/user-attachments/assets/aa4fdb96-bea5-4f4c-bd11-3fb9a9743407)
+
+# Part 3: Data Transformation using Azure Databricks
+
+## Launch the Databricks Workspace from Azure Databricks Resource we have created earlier
+
