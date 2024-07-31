@@ -11,17 +11,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ADLGen2_Parquet'"
 		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+		"ADLGen2_Parquet_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://rhugved-KeyVault.vault.azure.net/"
+			"defaultValue": "https://rhugveddatalakegen2.dfs.core.windows.net/"
 		},
 		"AKV_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://rhugved-KeyVault1.vault.azure.net/"
 		},
-		"ADLGen2_Parquet_properties_typeProperties_url": {
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://rhugveddatalakegen2.dfs.core.windows.net/"
+			"defaultValue": "https://rhugved-KeyVault.vault.azure.net/"
 		},
 		"Address_properties_typeProperties_server": {
 			"type": "string",
@@ -34,6 +34,18 @@
 		"Address_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "Rhugved"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "SYSTEMUNHACKABL\\RHUGVEDSQLSERVER"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdvantureWorksDB2020L"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Rhugved"
 		}
 	},
 	"variables": {
@@ -41,25 +53,18 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/SQLServer-SHIR')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"description": "used to connect SQL Server On-Premise Database",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"name": "[concat(parameters('factoryName'), '/ADLGen2_Parquet')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureKeyVault",
+				"type": "AzureBlobFS",
 				"typeProperties": {
-					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					"url": "[parameters('ADLGen2_Parquet_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ADLGen2_Parquet_accountKey')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -78,21 +83,92 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLGen2_Parquet')]",
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureBlobFS",
+				"type": "AzureKeyVault",
 				"typeProperties": {
-					"url": "[parameters('ADLGen2_Parquet_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('ADLGen2_Parquet_accountKey')]"
-					}
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLServer-SHIR')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"description": "used to connect SQL Server On-Premise Database",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Address_Parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLGen2_Parquet",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "bronze"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLGen2_Parquet')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BronzeContainer')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLGen2_Parquet",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"SchemaName": {
+						"type": "string"
+					},
+					"TableName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@{concat(dataset().TableName,'.parquet')}",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@{concat(dataset().SchemaName,'/',dataset().TableName)}",
+							"type": "Expression"
+						},
+						"fileSystem": "bronze"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLGen2_Parquet')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Address')]",
@@ -128,27 +204,37 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Address_Parquet')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/SQLDB_AdvantureWorksDB2020L')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ADLGen2_Parquet",
-					"type": "LinkedServiceReference"
-				},
+				"description": "Connects to On-Premise DB using SHIR",
 				"annotations": [],
-				"type": "Parquet",
+				"type": "SqlServer",
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "bronze"
-					},
-					"compressionCodec": "snappy"
+					"server": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server')]",
+					"database": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database')]",
+					"encrypt": "optional",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AKV",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "pass"
+					}
 				},
-				"schema": []
+				"connectVia": {
+					"referenceName": "SQLServer-SHIR",
+					"type": "IntegrationRuntimeReference"
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ADLGen2_Parquet')]"
+				"[concat(variables('factoryId'), '/integrationRuntimes/SQLServer-SHIR')]",
+				"[concat(variables('factoryId'), '/linkedServices/AKV')]"
 			]
 		},
 		{
@@ -210,6 +296,167 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Address')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDBTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SQLDB_AdvantureWorksDB2020L",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SQLDB_AdvantureWorksDB2020L')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDB_AdvantureWorksDB2020L_AllTables')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SQLDB_AdvantureWorksDB2020L",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SQLDB_AdvantureWorksDB2020L')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Copy-AllTables-AdvantureWorksDB2020L')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup DB Tables",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "select \r\ns.name as SchemaName,\r\nt.name as TableName\r\nfrom sys.tables t\r\njoin sys.schemas s\r\non t.schema_id = s.schema_id\r\nwhere s.name = 'SalesLT'\r\n",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQLDBTable",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach Schema Table",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Lookup DB Tables",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Lookup DB Tables').output.value",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy Table to ADLGen2",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "SqlServerSource",
+											"sqlReaderQuery": {
+												"value": "@{concat('select * from',item().SchemaName,'.',item().TableName)}",
+												"type": "Expression"
+											},
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"sink": {
+											"type": "ParquetSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "ParquetWriteSettings"
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "SQLDB_AdvantureWorksDB2020L_AllTables",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "BronzeContainer",
+											"type": "DatasetReference",
+											"parameters": {
+												"SchemaName": "@item().SchemaName",
+												"TableName": "@item().TableName"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SQLDBTable')]",
+				"[concat(variables('factoryId'), '/datasets/SQLDB_AdvantureWorksDB2020L_AllTables')]",
+				"[concat(variables('factoryId'), '/datasets/BronzeContainer')]"
 			]
 		},
 		{

@@ -8,8 +8,8 @@
 		"ADLGen2_Parquet_accountKey": {
 			"value": ""
 		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"value": "https://rhugved-KeyVault.vault.azure.net/"
+		"ADLGen2_Parquet_properties_typeProperties_url": {
+			"value": "https://rhugveddatalakegen2.dfs.core.windows.net/"
 		},
 		"AKV_properties_typeProperties_baseUrl": {
 			"value": "https://rhugved-KeyVault1.vault.azure.net/"
@@ -23,8 +23,17 @@
 		"Address_properties_typeProperties_userName": {
 			"value": "Rhugved"
 		},
-		"ADLGen2_Parquet_properties_typeProperties_url": {
-			"value": "https://rhugveddatalakegen2.dfs.core.windows.net/"
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://rhugved-KeyVault.vault.azure.net/"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server": {
+			"value": "SYSTEMUNHACKABL\\RHUGVEDSQLSERVER"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database": {
+			"value": "AdvantureWorksDB2020L"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
+			"value": "Rhugved"
 		},
 		"containerUri": {
 			"value": ""

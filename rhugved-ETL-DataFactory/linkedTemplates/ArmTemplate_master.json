@@ -11,9 +11,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ADLGen2_Parquet'"
 		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+		"ADLGen2_Parquet_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://rhugved-KeyVault.vault.azure.net/"
+			"defaultValue": "https://rhugveddatalakegen2.dfs.core.windows.net/"
 		},
 		"AKV_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -31,9 +31,21 @@
 			"type": "string",
 			"defaultValue": "Rhugved"
 		},
-		"ADLGen2_Parquet_properties_typeProperties_url": {
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://rhugveddatalakegen2.dfs.core.windows.net/"
+			"defaultValue": "https://rhugved-KeyVault.vault.azure.net/"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "SYSTEMUNHACKABL\\RHUGVEDSQLSERVER"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdvantureWorksDB2020L"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Rhugved"
 		},
 		"containerUri": {
 			"type": "string",
@@ -65,14 +77,14 @@
 					"ADLGen2_Parquet_accountKey": {
 						"value": "[parameters('ADLGen2_Parquet_accountKey')]"
 					},
-					"AzureKeyVault1_properties_typeProperties_baseUrl": {
-						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					"ADLGen2_Parquet_properties_typeProperties_url": {
+						"value": "[parameters('ADLGen2_Parquet_properties_typeProperties_url')]"
 					},
 					"AKV_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AKV_properties_typeProperties_baseUrl')]"
 					},
-					"ADLGen2_Parquet_properties_typeProperties_url": {
-						"value": "[parameters('ADLGen2_Parquet_properties_typeProperties_url')]"
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
 					},
 					"Address_properties_typeProperties_server": {
 						"value": "[parameters('Address_properties_typeProperties_server')]"
@@ -82,6 +94,15 @@
 					},
 					"Address_properties_typeProperties_userName": {
 						"value": "[parameters('Address_properties_typeProperties_userName')]"
+					},
+					"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server": {
+						"value": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server')]"
+					},
+					"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database": {
+						"value": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database')]"
+					},
+					"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
+						"value": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName')]"
 					}
 				}
 			},
