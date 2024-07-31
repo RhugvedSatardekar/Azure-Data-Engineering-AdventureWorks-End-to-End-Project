@@ -1,0 +1,20 @@
+{
+	"name": "SalesLT_Data_Transformation",
+	"properties": {
+		"description": "Connection to the Azure Databricks cluster(compute)",
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-3605031356218282.2.azuredatabricks.net",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AKV",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "databricks-data-transformation"
+			},
+			"existingClusterId": "0731-111018-15gqh1y1"
+		}
+	}
+}
