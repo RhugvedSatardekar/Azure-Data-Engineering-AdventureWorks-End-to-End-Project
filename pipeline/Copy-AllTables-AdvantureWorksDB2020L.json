@@ -61,7 +61,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
-									"sqlReaderQuery": "@{concat('select * from ',item().SchemaName,'.',item().TableName)}",
+									"sqlReaderQuery": {
+										"value": "@{concat('select * from ',item().SchemaName,'.',item().TableName)}",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
