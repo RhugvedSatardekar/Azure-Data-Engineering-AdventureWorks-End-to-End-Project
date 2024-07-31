@@ -95,8 +95,8 @@
 									"referenceName": "BronzeContainer",
 									"type": "DatasetReference",
 									"parameters": {
-										"SchemaName": "item().SchemaName",
-										"TableName": "item().TableName"
+										"SchemaName": "@item().SchemaName",
+										"TableName": "@item().TableName"
 									}
 								}
 							]
