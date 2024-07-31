@@ -8,7 +8,7 @@
 
 1. Create a Resource Group for the Services
 ![image](https://github.com/user-attachments/assets/d22f1989-1a10-42ae-8f88-a0a4c15bd377)
-2. Create Azure DataLake Gen2 Account
+2. Create Azure DataLake Gen2 Account (ADLGen2)
 ![image](https://github.com/user-attachments/assets/92c523aa-636d-4f11-bd45-71cd86aaa7e4)
 
 -select below option to create DataLake Gen2 account in storage account and create 
@@ -30,7 +30,7 @@
 ![image](https://github.com/user-attachments/assets/f3e378b0-ad01-4b1d-a1e1-fdaff56bf43e)
 
 6. Create Azure Databricks Resource for data transformation/pre-processing
-- Select Standard Pricing Tier for this project
+- Select Premium Pricing Tier for this project
 ![image](https://github.com/user-attachments/assets/c03811c0-56e7-4272-af25-dabcad28f340)
 ![image](https://github.com/user-attachments/assets/99904dbd-e6ce-41ec-816b-2812dca56c4e)
 
@@ -150,6 +150,15 @@ and for cloud-based Azure services we can use its own 'AutoResolvedIntegrationRu
 
 ![image](https://github.com/user-attachments/assets/1fc30980-6986-402c-8735-19b71e155bbc)
 
+Important: 
+The bronze, silver, and gold container approach in data lakes is a way to organize data in layers based on their level of processing:
+Bronze
+Contains raw, unprocessed data that can be a combination of streaming and batch transactions. This data is stored after data extraction.
+Silver
+Contains validated, enriched data that has been cleaned and conformed. This data is stored after data transformation and cleaning.
+Gold
+Contains highly refined and aggregated data that is ready to use for analytics, machine learning, and production applications. This data is stored after data science and analysis.
+
 4.14 We can map the Source Columns with the Destination desired columns or create our own mapping
 ![image](https://github.com/user-attachments/assets/282645fa-18e7-47da-b616-83a0fb50a08f)
 
@@ -229,3 +238,27 @@ https://www.java.com/en/download/manual.jsp this link and set destination folder
 
 ## Launch the Databricks Workspace from Azure Databricks Resource we have created earlier
 
+1. Add the Databricks to the Github repository for the project integration
+![image](https://github.com/user-attachments/assets/56c63abf-082d-4ec1-8ac1-5a0c526e613b)
+
+2. Create a Databricks Cluster (also knonw as Spark Cluster)
+![image](https://github.com/user-attachments/assets/6fee526f-7036-427a-8305-2872d2266591)
+
+![image](https://github.com/user-attachments/assets/1ff36c0e-8707-4b5c-b7f4-3e5b4f87b612)
+
+Note: For Azure Data Lake Storage credential passthrough, we need Premium account of DataBricks to be created through Azure 
+
+3. Mounting the ADLGen2 storage account to Databricks file system(DBFS) so that we can access the files inside Datalake as the local files of Databricks for data transformation.
+3.1 Create a notebook inside the Databricks git workspace and execute as below
+![image](https://github.com/user-attachments/assets/3ef837b8-6809-46df-b606-5f3633a2b473)
+3.2 We can see all the folders inside SalesLT 
+![image](https://github.com/user-attachments/assets/8ffa8a56-708d-4a7d-9404-b2eb1bfc759a)
+3.3 Similary create silver and gold containers in ADLGen2 and mount it to DBFS
+![image](https://github.com/user-attachments/assets/08a951ed-edd2-4816-b471-38f2508f7946)
+Important: Once we mount the containers, we do not require to mount it again to DBFS, we can directly use the source link of container to access.
+
+More information can be found here: https://learn.microsoft.com/en-us/azure/databricks/archive/credential-passthrough/adls-passthrough#--access-azure-data-lake-storage-directly-using-credential-passthrough
+
+4. Now we will use /mnt/bronze/ mount point to access all the parquet files storing database table records and load it to /mnt/silver/ mount point for data transformation
+### Level 1 Transformation
+#### Converting all the Date columns from DateTime to Date format
