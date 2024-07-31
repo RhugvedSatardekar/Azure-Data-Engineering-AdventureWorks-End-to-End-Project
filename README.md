@@ -294,34 +294,6 @@ More information can be found here: https://learn.microsoft.com/en-us/azure/data
 3. **Store Transformed Data**: Save the transformed data in 'delta' format in the silver container using the `/mnt/silver/` mount point.
 4. **Delta Lakehouse Architecture**: Leverage the Delta Lakehouse Architecture for its benefits, including version control and schema handling.
 
-### PySpark Code Example
-
-Here's an example of PySpark code for the transformation:
-
-```python
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, to_date
-
-# Initialize Spark Session
-spark = SparkSession.builder \
-    .appName("Data Transformation") \
-    .getOrCreate()
-
-# Load parquet files from bronze container
-df_bronze = spark.read.parquet("/mnt/bronze/")
-
-# Transform DateTime columns to Date format
-df_silver = df_bronze.withColumn("date_column", to_date(col("datetime_column")))
-
-# Write the transformed data to silver container in delta format
-df_silver.write.format("delta").mode("overwrite").save("/mnt/silver/")
-
-# Stop Spark Session
-spark.stop()
-```
-
-This code snippet demonstrates the process of reading parquet files from the bronze container, transforming DateTime columns to Date format, and saving the data in delta format in the silver container.
-
 ### Additional Resources
 
 For more detailed information on Delta Lakehouse Architecture and its benefits, refer to the [Microsoft Documentation](https://learn.microsoft.com/en-us/azure/databricks/delta/).
