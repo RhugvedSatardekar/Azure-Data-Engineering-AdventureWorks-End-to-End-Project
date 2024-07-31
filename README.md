@@ -76,7 +76,7 @@ https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks
 ![image](https://github.com/user-attachments/assets/50f6d76e-96c0-495c-ae9d-f5205909cbc2)
 3.4 Using these secrets all the services can access the On-Premise SQL server Database
 
-## Data Ingestion
+## Data Ingestion using Azure Data Factory(ADF)
 1. Launch the Azure Data Factory Portal from Azure Data Factory Resource 
 2. Configure Git Version Control System for project integration 
 ![image](https://github.com/user-attachments/assets/d21a3782-2a41-4b58-a81b-24b4131d337d)
@@ -163,4 +163,63 @@ and for cloud-based Azure services we can use its own 'AutoResolvedIntegrationRu
 https://www.java.com/en/download/manual.jsp this link and set destination folder as 'C:\Program Files\Java'. After installation set up the System Environment Variable Path for Java
 'JAVA_HOME' with the 'C:\Program Files\Java\jre1.8.0_421\bin' and rerun the pipline, it will succeed. More information can be found here https://learn.microsoft.com/en-gb/azure/data-factory/connector-troubleshoot-guide#error-code-jrenotfound
 
+4.16 The Data Ingestion is successful in ADLGen2 Bronze Container
+![image](https://github.com/user-attachments/assets/e877727a-8c3f-4c4d-ba57-bb1a3f056d41)
 
+4.17 Ingest all the tables from On-Premise database to ADLgen2 using ADF Pipeline
+![image](https://github.com/user-attachments/assets/43b6013e-01ee-4c7a-966b-72e5678151cd)
+4.17.1 Create new pipeline and add the linked service to On-Premise DB
+![image](https://github.com/user-attachments/assets/1fa64d05-5e60-487d-a3aa-e22b3f3c1fa8)
+
+![image](https://github.com/user-attachments/assets/cc127f3d-6466-4316-b687-ef957fb06a09)
+
+![image](https://github.com/user-attachments/assets/5c6a4d67-0d4b-440a-96de-ed2d43c12b78)
+
+4.17.2 Do not select any table and click OK
+![image](https://github.com/user-attachments/assets/15c34c77-401b-4843-9bdc-5c83f7cc3f8f)
+
+4.17.3 Select the Query Option, Deselect First Row Only and preview the data. All the tables from DB are visible
+![image](https://github.com/user-attachments/assets/8e572f30-749a-4795-bdd8-958b88e069f7)
+4.17.4 Upon Debugging the Pipeline we will be able to see the all the Tables in JSON format 
+![image](https://github.com/user-attachments/assets/e87c1bc5-d604-4006-a462-2a72d6e5d87e)
+4.17.5 Using forEach Activity we will be reading the all the table data from JSON file
+![image](https://github.com/user-attachments/assets/5a80f5a3-00e7-43b3-9720-cb0ccec09b4e)
+
+4.17.6 Create a Copy Data Activity inside ForEach
+
+![image](https://github.com/user-attachments/assets/fc7e132c-e143-454e-b42f-8fd8e4ce8fa1)
+4.17.7 Create a new Source Dataset and use the same Linked Servive created in earlier steps
+![image](https://github.com/user-attachments/assets/a83d94a6-eeda-4a7d-a21b-a0bcc223ffb0)
+4.17.8 Create a new Sink Dataset for Bronze Container of ADLGen2 
+![image](https://github.com/user-attachments/assets/050a169a-883f-4509-8d91-3865d26b2916)
+4.17.9 Extract the schema name and table name from outer lookup activity output JSON object list
+![image](https://github.com/user-attachments/assets/1b63c3fa-eb04-4a47-821e-c1fe74354a75)
+
+4.17.10 Create a parameter to dynamically update the FolderName to have a directory as follows:
+'SalesLT/Customer/Customer.parquet'
+
+![image](https://github.com/user-attachments/assets/6cef1e49-17f2-4ebb-9b33-909b92c77743)
+
+![image](https://github.com/user-attachments/assets/c4441b60-b7ed-4553-a766-d6ecd76ed36f)
+
+![image](https://github.com/user-attachments/assets/240ec284-e938-4b3c-9ace-cdb9eb7c13ae)
+
+![image](https://github.com/user-attachments/assets/4c5b4e57-b514-46be-bc53-8efb6c920709)
+
+![image](https://github.com/user-attachments/assets/3bba5c32-bdb4-404b-a456-f412c749875d)
+
+4.17.11 Click on publish. After Publish, Add Trigger to execute the pipeline
+
+![image](https://github.com/user-attachments/assets/cb032b32-ebd9-4f72-af3b-f4f4f9b36d04)
+
+4.17.12 After Successful Execution, we can check the Bronze Container of ADLGen2 
+
+![image](https://github.com/user-attachments/assets/d019a48d-daf7-49ea-9a1f-65c57da83075)
+
+![image](https://github.com/user-attachments/assets/bbedeb15-7eb4-463f-a34f-c6fa7973f38c)
+
+
+![image](https://github.com/user-attachments/assets/e84c931a-0796-4606-9763-aa12a27f67fc)
+
+
+![image](https://github.com/user-attachments/assets/aa4fdb96-bea5-4f4c-bd11-3fb9a9743407)
