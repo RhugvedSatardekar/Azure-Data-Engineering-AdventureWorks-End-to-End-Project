@@ -396,3 +396,9 @@ SSP is the most optimal solution for this project.
 4.5 Add a stored procedure activity in Foreach loop activity to run stored procedure we created in serverless sql pool by taking ViewName as parameter having table names(@item().name) assigned to it.
 
 ![image](https://github.com/user-attachments/assets/c6730136-aca1-4c3e-9a9e-6d324f4a135b)
+
+4.6 After publishing the Changes and triggering the pipeline, all the views from ADLGen2 gold tables are created in Synapse serverless sql pool for analysis
+![image](https://github.com/user-attachments/assets/74022f37-6db5-42be-8fbd-5387c5743a0e)
+
+![image](https://github.com/user-attachments/assets/257261f2-5742-4635-8b25-aaac205e4cf9)
+
