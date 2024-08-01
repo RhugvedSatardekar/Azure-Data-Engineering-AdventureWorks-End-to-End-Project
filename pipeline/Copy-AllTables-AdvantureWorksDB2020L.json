@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup DB Tables",
+				"name": "Lookup DB Table",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -33,7 +33,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Lookup DB Tables",
+						"activity": "Lookup DB Table",
 						"dependencyConditions": [
 							"Succeeded"
 						]
