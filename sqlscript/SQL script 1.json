@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "USE ADLGen2_gold_db\nGO\n\nCREATE or ALTER PROC view_gold @ViewName NVARCHAR(100)\nAS\nBEGIN\n\nDECLARE @statement VARCHAR(MAX)\n\n    SET @statement = N'CREATE or ALTER view ' + @ViewName + ' AS\n       SELECT *\n        FROM\n            OPENROWSET(\n                BULK ''https://rhugveddatalakegen2.dfs.core.windows.net/gold/SalesLT/' + @ViewName + '/'',\n                FORMAT = ''DELTA''\n            ) AS [result]  \n    '\nEXEC(@statement)\n\nEND\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "ADLGen2_gold_db",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
