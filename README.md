@@ -402,3 +402,22 @@ SSP is the most optimal solution for this project.
 
 ![image](https://github.com/user-attachments/assets/257261f2-5742-4635-8b25-aaac205e4cf9)
 
+# Part 5: Data Reporting using Power BI
+
+8. Connect the Synapse Serverless sql pool with Power BI
+
+8.1 Select Below data connector
+![image](https://github.com/user-attachments/assets/7e6f237b-bf7b-4069-835b-fa84d903d06b)
+
+8.2 Use Serverless SQL Endpoint from 'Synapse Workspace > Settings > Properties' and choose Import as Storage Mode/Data Connectivity mode as the source is lightweight and we can use DAX queries 
+for data modelling along with Time Intelligence. 
+![image](https://github.com/user-attachments/assets/0ba2f8e7-a09e-422b-b970-a8c9ae0c3859)
+
+8.3 Use Micorsoft EntraID(Azure Active Directory) email to authenticate credentials for serveless sql pool access
+![image](https://github.com/user-attachments/assets/9e30ab21-37dd-43e2-b69a-ed043e8cd7e2)
+
+![image](https://github.com/user-attachments/assets/35961d53-34f2-4b75-966f-51fb6b99a778)
+
+8.4 Load all the tables to Power BI Desktop
+![image](https://github.com/user-attachments/assets/6b57c30a-4205-4859-b68d-203f4950a175)
+
