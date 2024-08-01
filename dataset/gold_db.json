@@ -1,0 +1,19 @@
+{
+	"name": "gold_db",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "SalesLT",
+				"fileSystem": "gold"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
