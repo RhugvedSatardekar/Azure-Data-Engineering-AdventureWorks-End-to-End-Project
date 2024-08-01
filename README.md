@@ -315,5 +315,62 @@ For more detailed information on Delta Lakehouse Architecture and its benefits, 
 
 5.3 The python code files are available [here on github](https://github.com/RhugvedSatardekar/Azure-Data-Engineering-Project/tree/main/Databricks%20-%20Data%20Transformation)
 
+### Building ETL Pipeline using Azure Data Factory(ADF) to run jobs for Level 1 and Level 2 transformation in Databricks as data changes in ADLGen2 storage account 
+
+6 Create a linked service in ADF to connect to Databricks Compute
+![image](https://github.com/user-attachments/assets/78f59408-ea77-4473-bd3b-07dc52496b45)
+
+6.1 Generate access token in Databricks to establish connection between ADF and Databricks
+![image](https://github.com/user-attachments/assets/c37655c1-a41e-4253-b17b-df2f69a8fdcc)
+
+6.2 Add the token to the key valut 
+![image](https://github.com/user-attachments/assets/337c21eb-9fb0-46e9-8361-2d9e44eae4eb)
+
+6.3 Add Access token from Key Vault to finalize generate linked service and publish the changes to access the newly created Linked Service
+![image](https://github.com/user-attachments/assets/ef8f2d9d-e878-4de9-a623-85c7a3b1853a)
+
+6.4 Add 2 notebook activities to the prior Copy All Tables to ADLGen2 Activity we created, one for bronze to silver and other for silver to bronze
+
+![image](https://github.com/user-attachments/assets/3ae0e344-ef99-49b9-8751-e37b456b69c7)
+
+![image](https://github.com/user-attachments/assets/3d20e153-4c52-42eb-bf47-081b9b42def3)
+
+![image](https://github.com/user-attachments/assets/dba6e86d-d860-4d6b-ba17-3ab80edb6a8c)
+
+6.5 Publish the changes to deploy to Data factory and git repo
+
+6.6 Add trigger to execute the pipeline
+![image](https://github.com/user-attachments/assets/3026b091-c0db-4c49-aef3-a09e455240ad)
+
+Note: In this project, we are overwriting the data to the ADLGen2 and not implementing the incremental update. We can append the 'Delta Data' from operational databases and using databricks operations to the ADLGen2 using 'append' mode in databricks. we have four modes 'append', 'overwrite', 'ignore', and 'error' to save files on Datalakes from Databricks. 
+
+# Part 4: Data Loading using Azure Synapse Analytics
+- Synapse is built on the top of Azure Data Factory. It is a combination of both Azure Data Factory and Azure Databricks
+
+- Version Control with Github
+![image](https://github.com/user-attachments/assets/c9f662f6-e621-456a-af84-e0a475ef0d3e)
+
+7. Create SQL Database inside 'Data' section.
+
+1. Dedicated SQL Pool(DSP) vs Serverless SQL Pool(SSP) [difference](https://www.royalcyber.com/blogs/dedicated-sql-pool-vs-serverless-sql/)
+- DSP is Azure SQL Datawarehouse having power of compute and storage. However, SSP only has compute and can connect to external source to run the queries.
+- SSP It can only create the external tables, on the other hand, DSP has own storage for database tables(managed tables) and can create external tables as well along with database views.
+- SSP comes with the subscription without additional charges, unlike DSP, which exhausts credits based on Datawarehouse Unit(DWH)/hour.
+Note: Since the data we are dealing with is lightweight, we are going with SSP as we also have pre-processed/transformed finalized data in gold layer of ADLGen2. Hence, using the
+SSP is the most optimal solution for this project.
+
+2. When we created Synapse workspace, the connection to datalake was established automatically.
+![image](https://github.com/user-attachments/assets/3b7247c0-d6cb-4892-b63a-30f02807b9ad)
+
+3. We can see the files from gold container of ADLGen2 and can create the T-SQL query by right clicking table directory 
+![image](https://github.com/user-attachments/assets/1c47967c-3365-419e-81c4-56cd03d719c3)
+
+![image](https://github.com/user-attachments/assets/736b9953-3f9f-488d-8938-efa03a23d12f)
+
+- The clean data after transformation is queried
+![image](https://github.com/user-attachments/assets/b936a84d-1556-41de-b48f-66041f0adf7b)
+
+
+
 
 
