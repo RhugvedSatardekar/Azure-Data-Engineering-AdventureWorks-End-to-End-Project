@@ -421,3 +421,4 @@ for data modelling along with Time Intelligence.
 8.4 Load all the tables to Power BI Desktop
 ![image](https://github.com/user-attachments/assets/6b57c30a-4205-4859-b68d-203f4950a175)
 
+![Uploading image.png…]()
