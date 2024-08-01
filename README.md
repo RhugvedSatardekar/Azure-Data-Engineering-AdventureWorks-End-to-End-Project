@@ -370,7 +370,29 @@ SSP is the most optimal solution for this project.
 - The clean data after transformation is queried
 ![image](https://github.com/user-attachments/assets/b936a84d-1556-41de-b48f-66041f0adf7b)
 
+4. Create Synapse pipeline to create serverless sql views dynamically in synapse for all records of gold container
+4.1 We first create a stored procedure to execute the code to create the views upon pipeline trigger
+![image](https://github.com/user-attachments/assets/9c150c45-1ec6-447b-a00a-97b3dcd1349d)
+
+4.2 Create a Linked Service to connect to the serverless sql pool endpoint to store the views and it is managed by Azure SQL Database 
+
+![image](https://github.com/user-attachments/assets/872d363b-a21c-4688-9fa8-db9fbb8ab5c2)
+
+![image](https://github.com/user-attachments/assets/4118dfef-c237-452e-b690-fd96bf99feee)
 
 
+4.3 Create a linked service to fetch records from ADLGen2 and select 'gold/SalesLT/' folder
+![image](https://github.com/user-attachments/assets/3f84f1f2-4a95-4d1e-8df8-4aa51bfbb9f1)
 
+![image](https://github.com/user-attachments/assets/8e3c366c-ae57-4788-a788-5a92e45fb679)
 
+- Upon debugging we get the result in JSON format
+![image](https://github.com/user-attachments/assets/8de5a4e0-1bec-4913-9775-c3d2841135e9)
+- We need to pass names of child items to create view dynamically
+
+4.4 Create ForEach Activity to fetch the childitems from Get Metadata activity
+![image](https://github.com/user-attachments/assets/ea40c5e3-8f1d-4b3a-9d0f-42f4945526c7)
+
+4.5 Add a stored procedure activity in Foreach loop activity to run stored procedure we created in serverless sql pool by taking ViewName as parameter having table names(@item().name) assigned to it.
+
+![image](https://github.com/user-attachments/assets/c6730136-aca1-4c3e-9a9e-6d324f4a135b)
