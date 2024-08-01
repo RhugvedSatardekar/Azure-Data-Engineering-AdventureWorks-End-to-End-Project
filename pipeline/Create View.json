@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Table Names",
+				"name": "Get All Tables",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -36,7 +37,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Table Names",
+						"activity": "Get All Tables",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -45,7 +46,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Table Names').output.childItems",
+						"value": "@activity('Get All Tables').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
@@ -82,6 +83,8 @@
 				}
 			}
 		],
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2024-08-01T19:23:51Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
 }

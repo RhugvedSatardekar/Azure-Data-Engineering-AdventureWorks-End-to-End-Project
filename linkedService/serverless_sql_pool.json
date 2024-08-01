@@ -1,5 +1,6 @@
 {
 	"name": "serverless_sql_pool",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureSqlDatabase",
