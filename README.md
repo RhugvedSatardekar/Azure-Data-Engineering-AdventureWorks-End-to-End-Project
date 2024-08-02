@@ -463,6 +463,7 @@ SSP is the most optimal solution for this project.
 
 ## Part 5: Data Reporting using Power BI
 
+Please find the Power BI Report file [here](https://github.com/RhugvedSatardekar/Azure-Data-Engineering-AdventureWorks-End-to-End-Project/blob/main/Adventure%20Works%20SalesLT%20Report.pbix)
 
 8. Connect the Synapse Serverless sql pool with Power BI
 
