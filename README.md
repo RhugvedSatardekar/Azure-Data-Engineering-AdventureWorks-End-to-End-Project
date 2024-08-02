@@ -43,7 +43,7 @@ This architecture diagram represents a data processing and analytics pipeline us
 
 ## Project Agenda
 
-### [Part 1: Environment Setup](#part-1-environment-setup)
+### [Environment Setup](#part-1-environment-setup)
 ### [Part 2: Data Ingestion using Azure Data Factory (ADF)](#part-2-data-ingestion-using-azure-data-factory-adf)
 ### [Part 3: Data Transformation using Azure Databricks](#part-3-data-transformation-using-azure-databricks)
 ### [Part 4: Data Loading using Azure Synapse Analytics](#part-4-data-loading-using-azure-synapse-analytics)
