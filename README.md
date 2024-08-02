@@ -133,34 +133,7 @@ https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks
 
 ## Part 2: Data Ingestion using Azure Data Factory (ADF)
 
-Description for Part 2.
 
-## Part 3: Data Transformation using Azure Databricks
-
-Description for Part 3.
-
-## Part 4: Data Loading using Azure Synapse Analytics
-
-Description for Part 4.
-
-## Part 5: Data Reporting using Power BI
-
-Description for Part 5.
-
-## Part 6: Security and Governance
-
-Description for Part 6.
-
-## Part 7: End to End Pipeline Testing
-
-Description for Part 7.
-
-
-
-
-
----
-## Part 1: Environment Setup
 ## Part 2: Data Ingestion using Azure Data Factory (ADF)
 1. Launch the Azure Data Factory Portal from Azure Data Factory Resource 
 2. Configure Git Version Control System for project integration 
@@ -318,6 +291,8 @@ https://www.java.com/en/download/manual.jsp this link and set destination folder
 
 ![image](https://github.com/user-attachments/assets/aa4fdb96-bea5-4f4c-bd11-3fb9a9743407)
 
+
+
 ## Part 3: Data Transformation using Azure Databricks
 
 ## Launch the Databricks Workspace from Azure Databricks Resource we have created earlier
@@ -427,6 +402,31 @@ For more detailed information on Delta Lakehouse Architecture and its benefits, 
 ![image](https://github.com/user-attachments/assets/3026b091-c0db-4c49-aef3-a09e455240ad)
 
 Note: In this project, we are overwriting the data to the ADLGen2 and not implementing the incremental update. We can append the 'Delta Data' from operational databases and using databricks operations to the ADLGen2 using 'append' mode in databricks. we have four modes 'append', 'overwrite', 'ignore', and 'error' to save files on Datalakes from Databricks. 
+
+
+## Part 4: Data Loading using Azure Synapse Analytics
+
+Description for Part 4.
+
+## Part 5: Data Reporting using Power BI
+
+Description for Part 5.
+
+## Part 6: Security and Governance
+
+Description for Part 6.
+
+## Part 7: End to End Pipeline Testing
+
+Description for Part 7.
+
+
+
+
+
+
+## Part 3: Data Transformation using Azure Databricks
+
 
 ## Part 4: Data Loading using Azure Synapse Analytics
 - Synapse is built on the top of Azure Data Factory. It is a combination of both Azure Data Factory and Azure Databricks
