@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "rhugved-ETL-DataFactory"
+		},
+		"ADLGen2_Parquet_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"rhugved-synapse-pool-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:rhugved-synapse-pool.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"ADLGen2_Parquet_properties_typeProperties_url": {
+			"value": "https://rhugveddatalakegen2.dfs.core.windows.net/"
+		},
+		"AKV_properties_typeProperties_baseUrl": {
+			"value": "https://rhugved-KeyVault1.vault.azure.net/"
+		},
+		"Address_properties_typeProperties_server": {
+			"value": "SYSTEMUNHACKABL\\RHUGVEDSQLSERVER"
+		},
+		"Address_properties_typeProperties_database": {
+			"value": "AdvantureWorksDB2020L"
+		},
+		"Address_properties_typeProperties_userName": {
+			"value": "Rhugved"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://rhugveddatalakegen2.dfs.core.windows.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://rhugved-KeyVault.vault.azure.net/"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server": {
+			"value": "SYSTEMUNHACKABL\\RHUGVEDSQLSERVER"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database": {
+			"value": "AdvantureWorksDB2020L"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
+			"value": "Rhugved"
+		},
+		"SalesLT_Data_Transformation_properties_typeProperties_existingClusterId": {
+			"value": "0731-111018-15gqh1y1"
+		},
+		"rhugved-synapse-pool-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://rhugveddatalakegen2.dfs.core.windows.net"
+		},
+		"serverless_sql_pool_properties_typeProperties_server": {
+			"value": "rhugved-synapse-pool-ondemand.sql.azuresynapse.net"
+		},
+		"serverless_sql_pool_properties_typeProperties_database": {
+			"value": "ADLGen2_gold_db"
+		}
+	}
+}

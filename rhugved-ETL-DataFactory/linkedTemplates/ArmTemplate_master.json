@@ -1,0 +1,182 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "rhugved-ETL-DataFactory"
+		},
+		"ADLGen2_Parquet_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLGen2_Parquet'"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"rhugved-synapse-pool-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'rhugved-synapse-pool-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:rhugved-synapse-pool.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"ADLGen2_Parquet_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://rhugveddatalakegen2.dfs.core.windows.net/"
+		},
+		"AKV_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://rhugved-KeyVault1.vault.azure.net/"
+		},
+		"Address_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "SYSTEMUNHACKABL\\RHUGVEDSQLSERVER"
+		},
+		"Address_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdvantureWorksDB2020L"
+		},
+		"Address_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Rhugved"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://rhugveddatalakegen2.dfs.core.windows.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://rhugved-KeyVault.vault.azure.net/"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "SYSTEMUNHACKABL\\RHUGVEDSQLSERVER"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdvantureWorksDB2020L"
+		},
+		"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Rhugved"
+		},
+		"SalesLT_Data_Transformation_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0731-111018-15gqh1y1"
+		},
+		"rhugved-synapse-pool-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://rhugveddatalakegen2.dfs.core.windows.net"
+		},
+		"serverless_sql_pool_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "rhugved-synapse-pool-ondemand.sql.azuresynapse.net"
+		},
+		"serverless_sql_pool_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "ADLGen2_gold_db"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "rhugved-ETL-DataFactory_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADLGen2_Parquet_accountKey": {
+						"value": "[parameters('ADLGen2_Parquet_accountKey')]"
+					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
+					"rhugved-synapse-pool-WorkspaceDefaultSqlServer_connectionString": {
+						"value": "[parameters('rhugved-synapse-pool-WorkspaceDefaultSqlServer_connectionString')]"
+					},
+					"ADLGen2_Parquet_properties_typeProperties_url": {
+						"value": "[parameters('ADLGen2_Parquet_properties_typeProperties_url')]"
+					},
+					"AKV_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AKV_properties_typeProperties_baseUrl')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"Address_properties_typeProperties_server": {
+						"value": "[parameters('Address_properties_typeProperties_server')]"
+					},
+					"Address_properties_typeProperties_database": {
+						"value": "[parameters('Address_properties_typeProperties_database')]"
+					},
+					"Address_properties_typeProperties_userName": {
+						"value": "[parameters('Address_properties_typeProperties_userName')]"
+					},
+					"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server": {
+						"value": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_server')]"
+					},
+					"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database": {
+						"value": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_database')]"
+					},
+					"SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName": {
+						"value": "[parameters('SQLDB_AdvantureWorksDB2020L_properties_typeProperties_userName')]"
+					},
+					"SalesLT_Data_Transformation_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('SalesLT_Data_Transformation_properties_typeProperties_existingClusterId')]"
+					},
+					"rhugved-synapse-pool-WorkspaceDefaultStorage_properties_typeProperties_url": {
+						"value": "[parameters('rhugved-synapse-pool-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+					},
+					"serverless_sql_pool_properties_typeProperties_server": {
+						"value": "[parameters('serverless_sql_pool_properties_typeProperties_server')]"
+					},
+					"serverless_sql_pool_properties_typeProperties_database": {
+						"value": "[parameters('serverless_sql_pool_properties_typeProperties_database')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "rhugved-ETL-DataFactory_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'rhugved-ETL-DataFactory_ArmTemplate_0')]"
+			]
+		}
+	]
+}
