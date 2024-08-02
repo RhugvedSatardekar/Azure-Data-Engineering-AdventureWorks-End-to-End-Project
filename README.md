@@ -42,7 +42,7 @@ This architecture diagram represents a data processing and analytics pipeline us
 
 ## Project Agenda
 
-### [Part 1: Environment Setup](#part-1-environment-setup) 
+### [Part 1: Environment Setup](##part-1-environment-setup) 
 - Introduction to the project architecture.
 - Setting up the Azure environment.
 - Provisioning necessary resources (e.g., Azure Data Lake, Azure Databricks, Azure Synapse Analytics, Power BI, Azure Active Directory, and Azure Key Vault).
