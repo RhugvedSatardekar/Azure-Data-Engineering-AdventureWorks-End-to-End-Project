@@ -421,4 +421,13 @@ for data modelling along with Time Intelligence.
 8.4 Load all the tables to Power BI Desktop
 ![image](https://github.com/user-attachments/assets/6b57c30a-4205-4859-b68d-203f4950a175)
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/20e4a72c-2685-4b3f-91db-b26cb4e19151)
+
+8.5 Created a calculated column to classify gender from titles
+![image](https://github.com/user-attachments/assets/ebca721d-c2a3-4bbb-8f80-577cf2e22cd1)
+
+8.6 Sample Dashboard 
+![image](https://github.com/user-attachments/assets/0870720f-01c8-4597-b6a0-f9071cd1e739)
+
+
+
