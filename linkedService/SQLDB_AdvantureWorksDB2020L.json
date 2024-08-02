@@ -1,5 +1,6 @@
 {
 	"name": "SQLDB_AdvantureWorksDB2020L",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"description": "Connects to On-Premise DB using SHIR",
 		"annotations": [],

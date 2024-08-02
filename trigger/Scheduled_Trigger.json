@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Schedule a trigger to run the ETL Pipeline ",
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
@@ -17,14 +17,14 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2024-08-02T15:15:00",
+				"startTime": "2024-08-02T16:00:00",
 				"timeZone": "India Standard Time",
 				"schedule": {
 					"minutes": [
-						15
+						0
 					],
 					"hours": [
-						15
+						16
 					]
 				}
 			}

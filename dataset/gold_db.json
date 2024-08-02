@@ -15,5 +15,5 @@
 			}
 		}
 	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

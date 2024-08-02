@@ -1,6 +1,6 @@
 {
 	"name": "AzureDataLakeStorage1",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureBlobFS",

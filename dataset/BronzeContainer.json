@@ -18,12 +18,19 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "@{concat(dataset().TableName,'.parquet')}",
-				"folderPath": "@{concat(dataset().SchemaName,'/',dataset().TableName)}",
+				"fileName": {
+					"value": "@{concat(dataset().TableName,'.parquet')}",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@{concat(dataset().SchemaName,'/',dataset().TableName)}",
+					"type": "Expression"
+				},
 				"fileSystem": "bronze"
 			},
 			"compressionCodec": "snappy"
 		},
 		"schema": []
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

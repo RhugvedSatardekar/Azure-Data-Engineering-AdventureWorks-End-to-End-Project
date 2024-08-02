@@ -1,5 +1,6 @@
 {
 	"name": "SalesLT_Data_Transformation",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"description": "Connection to the Azure Databricks cluster(compute)",
 		"annotations": [],
