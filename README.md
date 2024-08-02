@@ -39,43 +39,19 @@ This architecture diagram represents a data processing and analytics pipeline us
    - Safeguards cryptographic keys and secrets used by cloud applications and services, enhancing security and compliance.
 
 
+# Azure AdventureWorks Data Lake and Analytics Pipeline
 
 ## Project Agenda
 
-### [Part 1: Environment Setup](#part-1-environment-setup) 
-- Introduction to the project architecture.
-- Setting up the Azure environment.
-- Provisioning necessary resources (e.g., Azure Data Lake, Azure Databricks, Azure Synapse Analytics, Power BI, Azure Active Directory, and Azure Key Vault).
-
+### [Part 1: Environment Setup](#part-1-environment-setup)
 ### [Part 2: Data Ingestion using Azure Data Factory (ADF)](#part-2-data-ingestion-using-azure-data-factory-adf)
-- Connecting to the On-premises SQL Server Database.
-- Configuring Azure Data Factory (ADF) for data extraction.
-- Moving data to Azure Data Lake Gen2 (Bronze Layer).
-
-### [Part 3: Data Transformation](#part-3-data-transformation-using-azure-databricks)
-- Setting up Azure Databricks.
-- Performing initial data cleaning and transformations.
-- Converting and storing data in Silver Layer.
-
+### [Part 3: Data Transformation using Azure Databricks](#part-3-data-transformation-using-azure-databricks)
 ### [Part 4: Data Loading using Azure Synapse Analytics](#part-4-data-loading-using-azure-synapse-analytics)
-- Further data refinement and enrichment.
-- Storing transformed data in the Gold Layer.
-
-### [Part 5: Data Reporting](#part-5-data-reporting-using-power-bi)
-- Integrating Azure Synapse Analytics for data analysis.
-- Connecting to Power BI for visualization and reporting.
-- Creating dashboards and reports.
-
+### [Part 5: Data Reporting using Power BI](#part-5-data-reporting-using-power-bi)
 ### [Part 6: Security and Governance](#part-6-security-and-governance)
-- Testing the entire data pipeline.
-- Validating data accuracy and consistency.
-- Performance tuning and optimization.
+### [Part 7: End to End Pipeline Testing](#part-7-end-to-end-pipeline-testing)
 
-## [Part 7: End to End Pipeline Testing](#part-7-end-to-end-pipeline-testing)
-- Implementing security best practices with Azure Active Directory.
-- Managing secrets and keys with Azure Key Vault.
 
----
 ## Part 1: Environment Setup
 
 ## Login to Azure Account using [protal.azure.com](https://portal.azure.com/)
@@ -153,6 +129,38 @@ https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks
 ![image](https://github.com/user-attachments/assets/50f6d76e-96c0-495c-ae9d-f5205909cbc2)
 3.4 Using these secrets all the services can access the On-Premise SQL server Database
 
+
+
+## Part 2: Data Ingestion using Azure Data Factory (ADF)
+
+Description for Part 2.
+
+## Part 3: Data Transformation using Azure Databricks
+
+Description for Part 3.
+
+## Part 4: Data Loading using Azure Synapse Analytics
+
+Description for Part 4.
+
+## Part 5: Data Reporting using Power BI
+
+Description for Part 5.
+
+## Part 6: Security and Governance
+
+Description for Part 6.
+
+## Part 7: End to End Pipeline Testing
+
+Description for Part 7.
+
+
+
+
+
+---
+## Part 1: Environment Setup
 ## Part 2: Data Ingestion using Azure Data Factory (ADF)
 1. Launch the Azure Data Factory Portal from Azure Data Factory Resource 
 2. Configure Git Version Control System for project integration 
