@@ -1,7 +1,83 @@
-# Usecase Architecture
+
+# Azure AdventureWorks Data Lake and Analytics Pipeline
+
+## Project Architecture Description
+
 ![image](https://github.com/user-attachments/assets/984a6339-15aa-414e-9ee4-19fa2ffe525d)
 
-# Part 1: Environment Setup
+This architecture diagram represents a data processing and analytics pipeline using various Azure services. Here's a breakdown of each component and its role in the overall architecture:
+
+1. **On-premises SQL Server Database:**
+   - The starting point of our data pipeline where raw data resides.
+
+2. **Azure Data Factory (ADF):**
+   - Responsible for orchestrating and automating data movement from the on-prem SQL Server Database to Azure Data Lake Gen2.
+
+3. **Azure Data Lake Gen2:**
+   - **Bronze Layer:**
+     - Raw data ingested from the source.
+   - **Silver Layer:**
+     - Cleaned and transformed data ready for further analysis.
+   - **Gold Layer:**
+     - Final, highly curated data for advanced analytics and reporting.
+
+4. **Azure Databricks:**
+   - Provides a platform for data engineering and data science. Used for transforming raw data in the Bronze Layer to refined data in the Silver and Gold Layers using Apache Spark.
+
+5. **Azure Synapse Analytics:**
+   - An integrated analytics service that accelerates time to insight across data warehouses and big data systems. Used for querying and analyzing data stored in the Gold Layer.
+
+6. **Power BI:**
+   - A business analytics tool used to visualize data and share insights across the organization. Connects to Azure Synapse Analytics to create interactive dashboards and reports.
+
+### Security & Governance
+
+1. **Azure Active Directory:**
+   - Provides secure authentication and authorization services, ensuring only authorized users can access the data and services.
+
+2. **Azure Key Vault:**
+   - Safeguards cryptographic keys and secrets used by cloud applications and services, enhancing security and compliance.
+
+
+
+## Project Agenda
+
+### [Part 1: Environment Setup](#part-1-environment-setup) 
+- Introduction to the project architecture.
+- Setting up the Azure environment.
+- Provisioning necessary resources (e.g., Azure Data Lake, Azure Databricks, Azure Synapse Analytics, Power BI, Azure Active Directory, and Azure Key Vault).
+
+### [Part 2: Data Ingestion using Azure Data Factory (ADF)](#part-2-data-ingestion-using-azure-data-factory-adf)
+- Connecting to the On-premises SQL Server Database.
+- Configuring Azure Data Factory (ADF) for data extraction.
+- Moving data to Azure Data Lake Gen2 (Bronze Layer).
+
+### [Part 3: Data Transformation](#part-3-data-transformation-using-azure-databricks)
+- Setting up Azure Databricks.
+- Performing initial data cleaning and transformations.
+- Converting and storing data in Silver Layer.
+
+### [Part 4: Data Loading using Azure Synapse Analytics](#part-4-data-loading-using-azure-synapse-analytics)
+- Further data refinement and enrichment.
+- Storing transformed data in the Gold Layer.
+
+### [Part 5: Data Reporting](#part-5-data-reporting-using-power-bi)
+- Integrating Azure Synapse Analytics for data analysis.
+- Connecting to Power BI for visualization and reporting.
+- Creating dashboards and reports.
+
+### [Part 6: Security and Governance](#part-6-security-and-governance)
+- Testing the entire data pipeline.
+- Validating data accuracy and consistency.
+- Performance tuning and optimization.
+
+## [Part 7: End to End Pipeline Testing](#part-7-end-to-end-pipeline-testing)
+- Implementing security best practices with Azure Active Directory.
+- Managing secrets and keys with Azure Key Vault.
+
+---
+
+## Part 1: Environment Setup
 ## Login to Azure Account using [protal.azure.com](https://portal.azure.com/)
 
 ## Create Required Resources in Azure Infrastructure
@@ -77,7 +153,7 @@ https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks
 ![image](https://github.com/user-attachments/assets/50f6d76e-96c0-495c-ae9d-f5205909cbc2)
 3.4 Using these secrets all the services can access the On-Premise SQL server Database
 
-# Part 2: **Data Ingestion using Azure Data Factory (ADF)**
+## Part 2: Data Ingestion using Azure Data Factory (ADF)
 1. Launch the Azure Data Factory Portal from Azure Data Factory Resource 
 2. Configure Git Version Control System for project integration 
 ![image](https://github.com/user-attachments/assets/d21a3782-2a41-4b58-a81b-24b4131d337d)
@@ -234,7 +310,7 @@ https://www.java.com/en/download/manual.jsp this link and set destination folder
 
 ![image](https://github.com/user-attachments/assets/aa4fdb96-bea5-4f4c-bd11-3fb9a9743407)
 
-# Part 3: Data Transformation using Azure Databricks
+## Part 3: Data Transformation using Azure Databricks
 
 ## Launch the Databricks Workspace from Azure Databricks Resource we have created earlier
 
@@ -344,7 +420,7 @@ For more detailed information on Delta Lakehouse Architecture and its benefits, 
 
 Note: In this project, we are overwriting the data to the ADLGen2 and not implementing the incremental update. We can append the 'Delta Data' from operational databases and using databricks operations to the ADLGen2 using 'append' mode in databricks. we have four modes 'append', 'overwrite', 'ignore', and 'error' to save files on Datalakes from Databricks. 
 
-# Part 4: Data Loading using Azure Synapse Analytics
+## Part 4: Data Loading using Azure Synapse Analytics
 - Synapse is built on the top of Azure Data Factory. It is a combination of both Azure Data Factory and Azure Databricks
 
 - Version Control with Github
@@ -402,7 +478,7 @@ SSP is the most optimal solution for this project.
 
 ![image](https://github.com/user-attachments/assets/257261f2-5742-4635-8b25-aaac205e4cf9)
 
-# Part 5: Data Reporting using Power BI
+## Part 5: Data Reporting using Power BI
 
 8. Connect the Synapse Serverless sql pool with Power BI
 
@@ -429,7 +505,7 @@ for data modelling along with Time Intelligence.
 8.6 Sample Dashboard 
 ![image](https://github.com/user-attachments/assets/0870720f-01c8-4597-b6a0-f9071cd1e739)
 
-# Part 5: Security and Governance 
+## Part 6: Security and Governance 
 
 9. Creating Security Groups in Microsoft EntraID (Azure Active Directory) to access Resource Group
 1. I have created a sample security group and added Owner and Users to be added to Resource Group
@@ -441,7 +517,7 @@ for data modelling along with Time Intelligence.
 3. Now a Security Group has rights to access the services from Selected Resource Group
 ![image](https://github.com/user-attachments/assets/d34bcd8d-81ef-4c8e-8755-07a13250bbdc)
 
-# Part 6: End to End Pipeline Testing
+## Part 7: End to End Pipeline Testing
 
 10. Create a scheduled Trigger to Automate the ETL Pipeline
 
