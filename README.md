@@ -43,13 +43,13 @@ This architecture diagram represents a data processing and analytics pipeline us
 
 ## Project Agenda
 
-### [Environment Setup](#part-1-environment-setup)
-### [Part 2: Data Ingestion using Azure Data Factory (ADF)](#part-2-data-ingestion-using-azure-data-factory-adf)
-### [Part 3: Data Transformation using Azure Databricks](#part-3-data-transformation-using-azure-databricks)
-### [Part 4: Data Loading using Azure Synapse Analytics](#part-4-data-loading-using-azure-synapse-analytics)
-### [Part 5: Data Reporting using Power BI](#part-5-data-reporting-using-power-bi)
-### [Part 6: Security and Governance](#part-6-security-and-governance)
-### [Part 7: End to End Pipeline Testing](#part-7-end-to-end-pipeline-testing)
+### [1. Environment Setup](#part-1-environment-setup)
+### [2: Data Ingestion using Azure Data Factory (ADF)](#part-2-data-ingestion-using-azure-data-factory-adf)
+### [3: Data Transformation using Azure Databricks](#part-3-data-transformation-using-azure-databricks)
+### [4: Data Loading using Azure Synapse Analytics](#part-4-data-loading-using-azure-synapse-analytics)
+### [5: Data Reporting using Power BI](#part-5-data-reporting-using-power-bi)
+### [6: Security and Governance](#part-6-security-and-governance)
+### [7: End to End Pipeline Testing](#part-7-end-to-end-pipeline-testing)
 
 
 ## Part 1: Environment Setup
