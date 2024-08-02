@@ -429,5 +429,16 @@ for data modelling along with Time Intelligence.
 8.6 Sample Dashboard 
 ![image](https://github.com/user-attachments/assets/0870720f-01c8-4597-b6a0-f9071cd1e739)
 
+# Part 5: Security and Governance 
+
+9. Creating Security Groups in Microsoft EntraID (Azure Active Directory) to access Resource Group
+1. I have created a sample security group and added Owner and Users to be added to Resource Group
+![image](https://github.com/user-attachments/assets/15e4fc92-adf9-45f8-8ac6-348fe0f986af)
+
+2. Add Contributor Role Assignment to the Resource Group
+![image](https://github.com/user-attachments/assets/036d206c-41e3-416c-942c-28e883a73f2e)
+
+3. Now a Security Group has rights to access the services from Selected Resource Group
+![image](https://github.com/user-attachments/assets/d34bcd8d-81ef-4c8e-8755-07a13250bbdc)
 
 
