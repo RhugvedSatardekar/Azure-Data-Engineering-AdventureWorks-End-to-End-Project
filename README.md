@@ -405,29 +405,6 @@ Note: In this project, we are overwriting the data to the ADLGen2 and not implem
 
 
 ## Part 4: Data Loading using Azure Synapse Analytics
-
-Description for Part 4.
-
-## Part 5: Data Reporting using Power BI
-
-Description for Part 5.
-
-## Part 6: Security and Governance
-
-Description for Part 6.
-
-## Part 7: End to End Pipeline Testing
-
-Description for Part 7.
-
-
-
-
-
-
-## Part 3: Data Transformation using Azure Databricks
-
-
 ## Part 4: Data Loading using Azure Synapse Analytics
 - Synapse is built on the top of Azure Data Factory. It is a combination of both Azure Data Factory and Azure Databricks
 
@@ -486,7 +463,10 @@ SSP is the most optimal solution for this project.
 
 ![image](https://github.com/user-attachments/assets/257261f2-5742-4635-8b25-aaac205e4cf9)
 
+
+
 ## Part 5: Data Reporting using Power BI
+
 
 8. Connect the Synapse Serverless sql pool with Power BI
 
@@ -513,7 +493,9 @@ for data modelling along with Time Intelligence.
 8.6 Sample Dashboard 
 ![image](https://github.com/user-attachments/assets/0870720f-01c8-4597-b6a0-f9071cd1e739)
 
-## Part 6: Security and Governance 
+
+## Part 6: Security and Governance
+
 
 9. Creating Security Groups in Microsoft EntraID (Azure Active Directory) to access Resource Group
 1. I have created a sample security group and added Owner and Users to be added to Resource Group
@@ -524,6 +506,7 @@ for data modelling along with Time Intelligence.
 
 3. Now a Security Group has rights to access the services from Selected Resource Group
 ![image](https://github.com/user-attachments/assets/d34bcd8d-81ef-4c8e-8755-07a13250bbdc)
+
 
 ## Part 7: End to End Pipeline Testing
 
