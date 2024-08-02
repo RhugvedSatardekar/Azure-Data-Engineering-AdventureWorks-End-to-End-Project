@@ -76,7 +76,7 @@ This architecture diagram represents a data processing and analytics pipeline us
 - Managing secrets and keys with Azure Key Vault.
 
 ---
-## Part 1: Environment Setup
+## [Part 1: Environment Setup](#project-agenda)
 
 ## Login to Azure Account using [protal.azure.com](https://portal.azure.com/)
 
