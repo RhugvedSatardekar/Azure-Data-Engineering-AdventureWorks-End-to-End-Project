@@ -1,0 +1,33 @@
+{
+	"name": "Scheduled_Trigger",
+	"properties": {
+		"description": "Schedule a trigger to run the ETL Pipeline ",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Copy-AllTables-AdvantureWorksDB2020L",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-08-02T15:15:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						15
+					],
+					"hours": [
+						15
+					]
+				}
+			}
+		}
+	}
+}
