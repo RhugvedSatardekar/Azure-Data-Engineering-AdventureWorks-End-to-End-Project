@@ -130,10 +130,6 @@ https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks
 3.4 Using these secrets all the services can access the On-Premise SQL server Database
 
 
-
-## Part 2: Data Ingestion using Azure Data Factory (ADF)
-
-
 ## Part 2: Data Ingestion using Azure Data Factory (ADF)
 1. Launch the Azure Data Factory Portal from Azure Data Factory Resource 
 2. Configure Git Version Control System for project integration 
