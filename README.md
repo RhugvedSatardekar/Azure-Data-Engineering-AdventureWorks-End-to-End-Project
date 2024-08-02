@@ -508,7 +508,7 @@ for data modelling along with Time Intelligence.
 
 10. Create a scheduled Trigger to Automate the ETL Pipeline
 
-1. We added 2 rows to Customer Table in SQL Server Database (operational database) using below script:
+1 . We added 2 rows to Customer Table in SQL Server Database (operational database) using below script:
 ```sql
 
 USE [AdvantureWorksDB2020L]
