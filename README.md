@@ -441,4 +441,102 @@ for data modelling along with Time Intelligence.
 3. Now a Security Group has rights to access the services from Selected Resource Group
 ![image](https://github.com/user-attachments/assets/d34bcd8d-81ef-4c8e-8755-07a13250bbdc)
 
+# Part 6: End to End Pipeline Testing
+
+10. Create a scheduled Trigger to Automate the ETL Pipeline
+
+1. We added 2 rows to Customer Table in SQL Server Database (operational database) using below script:
+```sql
+
+USE [AdvantureWorksDB2020L]
+GO
+
+set identity_insert AdvantureWorksDB2020L.SalesLT.Customer on
+
+-- Sample Insert Record 1
+INSERT INTO [SalesLT].[Customer]
+           ([CustomerID],[NameStyle]
+           ,[Title]
+           ,[FirstName]
+           ,[MiddleName]
+           ,[LastName]
+           ,[Suffix]
+           ,[CompanyName]
+           ,[SalesPerson]
+           ,[EmailAddress]
+           ,[Phone]
+           ,[PasswordHash]
+           ,[PasswordSalt]
+           ,[rowguid]
+           ,[ModifiedDate])
+     VALUES
+           (595959,0 -- NameStyle
+           ,'Mr.' -- Title
+           ,'John' -- FirstName
+           ,'A.' -- MiddleName
+           ,'Doe' -- LastName
+           ,NULL -- Suffix
+           ,'Example Corp' -- CompanyName
+           ,'Jane Smith' -- SalesPerson
+           ,'john.doe@example.com' -- EmailAddress
+           ,'555-1234' -- Phone
+           ,'HASHEDPASSWORD1234567890' -- PasswordHash
+           ,'SALT1234' -- PasswordSalt
+           ,NEWID() -- rowguid
+           ,GETDATE()) -- ModifiedDate
+GO
+
+set identity_insert AdvantureWorksDB2020L.SalesLT.Customer off
+
+set identity_insert AdvantureWorksDB2020L.SalesLT.Customer on
+-- Sample Insert Record 2
+INSERT INTO [SalesLT].[Customer]
+           ([CustomerID],[NameStyle]
+           ,[Title]
+           ,[FirstName]
+           ,[MiddleName]
+           ,[LastName]
+           ,[Suffix]
+           ,[CompanyName]
+           ,[SalesPerson]
+           ,[EmailAddress]
+           ,[Phone]
+           ,[PasswordHash]
+           ,[PasswordSalt]
+           ,[rowguid]
+           ,[ModifiedDate])
+     VALUES
+           (292929,1 -- NameStyle
+           ,'Ms.' -- Title
+           ,'Jane' -- FirstName
+           ,'B.' -- MiddleName
+           ,'Smith' -- LastName
+           ,'Jr.' -- Suffix
+           ,'Another Corp' -- CompanyName
+           ,'John Doe' -- SalesPerson
+           ,'jane.smith@anothercorp.com' -- EmailAddress
+           ,'555-5678' -- Phone
+           ,'HASHEDPASSWORD9876543210' -- PasswordHash
+           ,'SALT5678' -- PasswordSalt
+           ,NEWID() -- rowguid
+           ,GETDATE()) -- ModifiedDate
+GO
+set identity_insert AdvantureWorksDB2020L.SalesLT.Customer off
+```
+2. Now the new count of Customers changes from 847 to  849.
+![image](https://github.com/user-attachments/assets/69a1455a-1a32-43ea-9a2d-a37a2be45899)
+
+3. The aim is to add this delta data to ADLGen2 containers and update the Power BI report.
+Hence, we add the new Scheduled Trigger for the pipeline and publish the changes to ADF workspace
+![image](https://github.com/user-attachments/assets/f0a32b3a-f858-42f3-976b-c66fe1359f3f)
+
+3. The Pipeline will trigger automatically as per schedule. In below example, I had created hourly pipeline to check and interval was set to 5. However, for real time project
+we will schedule the pipeline to trigger once a day or as per the business requirement. 
+![image](https://github.com/user-attachments/assets/163193d0-b23d-48cc-99bc-b6d7d930bdaf)
+
+4. The Trigger Runs as below
+![image](https://github.com/user-attachments/assets/26adcddd-e54e-497e-81c8-1f214c34e150)
+
+5. Upon refresh the report page, the Customer count gets updated. Thus, the delta data added successfully to the ADLgen2 containers and Synapse Serverless SQL views also updated.
+![image](https://github.com/user-attachments/assets/9a7acdc3-4a53-411d-b7ce-f2ffb50b518c)
 
