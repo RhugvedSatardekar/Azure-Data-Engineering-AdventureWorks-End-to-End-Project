@@ -1,0 +1,10 @@
+{
+	"name": "Movies",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://rhugveddatalakegen2.dfs.core.windows.net/"
+		}
+	}
+}
